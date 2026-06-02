@@ -2,17 +2,39 @@
 const { useState: useStateC } = React;
 
 function Contact({ t, lang }) {
-  const [sent, setSent] = useStateC(false);
+  // status: idle | sending | sent | error
+  const [status, setStatus] = useStateC('idle');
   const [form, setForm] = useStateC({ name: '', email: '', company: '', project: 'Website', msg: '' });
   const projectTypes = lang === 'pt'
     ? ['Website', 'Sistema Web', 'ERP', 'E-commerce', 'App', 'Outro']
     : ['Website', 'Web System', 'ERP', 'E-commerce', 'App', 'Other'];
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 4500);
+    if (status === 'sending') return;
+    setStatus('sending');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, lang }),
+      });
+      if (!res.ok) throw new Error('Request failed: ' + res.status);
+      setStatus('sent');
+      setForm({ name: '', email: '', company: '', project: projectTypes[0], msg: '' });
+      setTimeout(() => setStatus('idle'), 5000);
+    } catch (err) {
+      console.error('Contact form error:', err);
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 6000);
+    }
   };
+
+  const sent = status === 'sent';
+  const sending = status === 'sending';
+  const errored = status === 'error';
+  const btnLabel = sent ? t.contact.sent : sending ? t.contact.sending : errored ? t.contact.error : t.contact.send;
+  const btnIcon = sent ? '✓' : sending ? '…' : errored ? '↻' : '→';
 
   return (
     <section id="contact" className="contact">
@@ -55,8 +77,8 @@ function Contact({ t, lang }) {
             <textarea rows="5" required value={form.msg} onChange={e => setForm({...form, msg: e.target.value})} />
           </label>
           <div className="form-actions">
-            <button type="submit" className={"btn btn-primary " + (sent ? "sent" : "")}>
-              {sent ? t.contact.sent : t.contact.send} <span className="arrow">{sent ? "✓" : "→"}</span>
+            <button type="submit" disabled={sending} className={"btn btn-primary " + (sent ? "sent " : "") + (errored ? "errored " : "") + (sending ? "sending" : "")}>
+              {btnLabel} <span className="arrow">{btnIcon}</span>
             </button>
             <div className="form-hint mono">
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--lime)', boxShadow: '0 0 10px var(--lime)', display: 'inline-block', marginRight: 10 }} />
@@ -167,6 +189,16 @@ function Contact({ t, lang }) {
           border-color: var(--lime);
           color: var(--bg);
         }
+        .btn.sending {
+          opacity: 0.7;
+          cursor: none;
+        }
+        .btn.errored {
+          background: #f43f5e;
+          border-color: #f43f5e;
+          color: #fff;
+        }
+        .btn.sending .arrow { animation: pulse 1s ease-in-out infinite; }
         @media (max-width: 720px) {
           .form-row { grid-template-columns: 1fr; }
           .contact-form { padding: 28px; }

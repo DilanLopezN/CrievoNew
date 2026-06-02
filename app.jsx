@@ -88,6 +88,70 @@ function SectionDivider({ variant = 'line' }) {
   );
 }
 
+function WhatsAppFAB({ t }) {
+  const phone = '5511944502819'; // 55 (BR) + 11 (SP) + número
+  const w = t.whatsapp || {};
+  const href = `https://wa.me/${phone}?text=${encodeURIComponent(w.message || '')}`;
+  return (
+    <a className="wa-fab" href={href} target="_blank" rel="noopener noreferrer" aria-label={w.aria}>
+      <svg className="wa-fab-icon" viewBox="0 0 32 32" width="26" height="26" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M16.001 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.6 4.46 1.74 6.4L3.2 28.8l6.56-1.72a12.74 12.74 0 0 0 6.24 1.62h.005c7.06 0 12.8-5.74 12.8-12.8 0-3.42-1.33-6.64-3.75-9.06A12.71 12.71 0 0 0 16.001 3.2Zm0 23.04h-.004a10.6 10.6 0 0 1-5.4-1.48l-.39-.23-4.02 1.05 1.07-3.92-.25-.4a10.6 10.6 0 0 1-1.63-5.66c0-5.86 4.77-10.63 10.64-10.63 2.84 0 5.51 1.11 7.52 3.12a10.56 10.56 0 0 1 3.11 7.52c0 5.87-4.77 10.64-10.63 10.64Zm5.83-7.96c-.32-.16-1.89-.93-2.18-1.04-.29-.11-.5-.16-.71.16-.21.32-.82 1.04-1 1.25-.18.21-.37.24-.69.08-.32-.16-1.35-.5-2.57-1.59-.95-.85-1.59-1.9-1.78-2.22-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.72-.98-2.35-.26-.62-.52-.54-.71-.55-.18-.01-.4-.01-.61-.01-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.65 0 1.56 1.14 3.07 1.3 3.28.16.21 2.24 3.42 5.42 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.89-.77 2.16-1.52.27-.74.27-1.38.19-1.51-.08-.13-.29-.21-.61-.37Z"/>
+      </svg>
+      <span className="wa-fab-label">{w.label}</span>
+      <style>{`
+        .wa-fab {
+          position: fixed;
+          left: 24px;
+          bottom: 24px;
+          z-index: 2147483645;
+          display: inline-flex;
+          align-items: center;
+          gap: 0;
+          height: 58px;
+          padding: 0 16px;
+          border-radius: 999px;
+          background: #25D366;
+          color: #06270f;
+          text-decoration: none;
+          font-family: var(--font-mono);
+          font-size: 13px;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35), 0 0 0 0 rgba(37, 211, 102, 0.5);
+          transition: transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease), padding 0.3s var(--ease);
+          animation: waPulse 2.8s ease-in-out infinite;
+        }
+        .wa-fab-icon { flex-shrink: 0; }
+        .wa-fab-label {
+          max-width: 0;
+          overflow: hidden;
+          white-space: nowrap;
+          opacity: 0;
+          transition: max-width 0.4s var(--ease), opacity 0.3s var(--ease), margin-left 0.4s var(--ease);
+        }
+        .wa-fab:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 16px 40px rgba(37, 211, 102, 0.5);
+          animation: none;
+        }
+        .wa-fab:hover .wa-fab-label {
+          max-width: 160px;
+          opacity: 1;
+          margin-left: 10px;
+        }
+        @keyframes waPulse {
+          0%, 100% { box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35), 0 0 0 0 rgba(37, 211, 102, 0.5); }
+          50% { box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35), 0 0 0 12px rgba(37, 211, 102, 0); }
+        }
+        @media (max-width: 720px) {
+          .wa-fab { left: 16px; bottom: 16px; height: 54px; padding: 0 14px; }
+        }
+      `}</style>
+    </a>
+  );
+}
+
 function MarqueeStrip({ items }) {
   const doubled = [...items, ...items];
   return (
@@ -175,6 +239,8 @@ function App() {
       <SectionDivider variant="dots" />
       <Contact t={t} lang={lang} />
       <Footer t={t} lang={lang} />
+
+      <WhatsAppFAB t={t} />
 
       {TP && (
         <TP title="Tweaks">

@@ -110,7 +110,14 @@ window.CRIEVO_COPY = {
       project: "Tipo de projeto",
       msg: "Conte tudo. O que precisa ser construído?",
       send: "Enviar briefing",
-      sent: "Briefing enviado · Resposta em 24h"
+      sent: "Briefing enviado · Resposta em 24h",
+      sending: "Enviando…",
+      error: "Erro ao enviar · tente o WhatsApp"
+    },
+    whatsapp: {
+      label: "Orçamento",
+      aria: "Pedir orçamento pelo WhatsApp",
+      message: "Olá! Vim pelo site da Crievo e gostaria de solicitar um orçamento. 🚀"
     },
     footer: {
       tag: "Estúdio digital · São Paulo + Remoto",
@@ -228,7 +235,14 @@ window.CRIEVO_COPY = {
       project: "Project type",
       msg: "Tell us everything. What needs to be built?",
       send: "Send brief",
-      sent: "Brief sent · Reply in 24h"
+      sent: "Brief sent · Reply in 24h",
+      sending: "Sending…",
+      error: "Send failed · try WhatsApp"
+    },
+    whatsapp: {
+      label: "Get a quote",
+      aria: "Request a quote on WhatsApp",
+      message: "Hi! I came from the Crievo website and I'd like to request a quote. 🚀"
     },
     footer: {
       tag: "Digital studio · São Paulo + Remote",
