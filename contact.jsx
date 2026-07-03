@@ -235,7 +235,7 @@ function Footer({ t, lang }) {
             </div>
             <div className="footer-col">
               <h4 className="mono">Social</h4>
-              <a href="https://www.instagram.com/crievo_/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+              <a href="#">Instagram ↗</a>
               <a href="#">LinkedIn ↗</a>
               <a href="#">GitHub ↗</a>
               <a href="#">Behance ↗</a>

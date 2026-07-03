@@ -4,7 +4,7 @@ Landing page da Crievo — HTML estático + React (via CDN) com transpilação B
 
 ## Funcionalidades
 
-- **Botão flutuante de WhatsApp** (canto inferior esquerdo) que abre o chat com `+55 11 92628-8319` já com uma mensagem pedindo orçamento.
+- **Botão flutuante de WhatsApp** (canto inferior esquerdo) que abre o chat com `+55 11 94450-2819` já com uma mensagem pedindo orçamento.
 - **Formulário de contato** integrado ao **Resend**, que envia os emails para a sua caixa de entrada.
 
 ## Rodar localmente
