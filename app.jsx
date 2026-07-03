@@ -44,7 +44,7 @@ function Nav({ lang, setLang, t }) {
   return (
     <nav className={"nav " + (scrolled ? "scrolled" : "")}>
       <a href="#home" className="logo">
-        <span className="logo-mark">C</span>
+        <img className="logo-mark" src="assets/logo-white.png" alt="" />
         <span>Crievo</span>
       </a>
       <ul className="nav-links">
