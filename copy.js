@@ -7,7 +7,7 @@ window.CRIEVO_COPY = {
       eyebrow: "Estúdio digital · Desde 2019",
       titleA: "Construímos",
       titleB: "produtos digitais",
-      titleC: "que fazem dinheiro",
+      titleC: "que fazem o dinheiro",
       titleD: "trabalhar.",
       sub: "Crievo é o estúdio que sua concorrência não quer que você conheça. Sites, sistemas e ERPs sob medida — desenhados como marca, programados como engenharia.",
       stats: [
