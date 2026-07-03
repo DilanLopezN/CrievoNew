@@ -89,7 +89,7 @@ function SectionDivider({ variant = 'line' }) {
 }
 
 function WhatsAppFAB({ t }) {
-  const phone = '5511944502819'; // 55 (BR) + 11 (SP) + número
+  const phone = '5511926288319'; // 55 (BR) + 11 (SP) + número
   const w = t.whatsapp || {};
   const href = `https://wa.me/${phone}?text=${encodeURIComponent(w.message || '')}`;
   return (
