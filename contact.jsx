@@ -215,8 +215,7 @@ function Footer({ t, lang }) {
         <div className="footer-top">
           <div className="footer-brand">
             <div className="footer-logo">
-              <span className="logo-mark">C</span>
-              <span style={{ fontSize: 28, fontWeight: 600, letterSpacing: '-0.04em' }}>Crievo</span>
+              <img src="assets/logo-white.svg" alt="Crievo" height="36" />
             </div>
             <p className="footer-tag mono">{t.footer.tag}</p>
           </div>
